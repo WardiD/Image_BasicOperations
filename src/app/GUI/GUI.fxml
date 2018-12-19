@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+<SplitPane dividerPositions="0.2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.GUI.GUIController">
+  <items>
+    <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="320.0" prefHeight="160.0" prefWidth="320.0">
+         <children>
+            <Button fx:id="loadImageButton" layoutX="111.0" layoutY="23.0" mnemonicParsing="false" onAction="#LoadImageButtonAction" text="Load Image" AnchorPane.leftAnchor="111.0" AnchorPane.rightAnchor="111.0" AnchorPane.topAnchor="20.0" />
+            <Label fx:id="imageNameLabel" alignment="TOP_CENTER" layoutY="65.0" prefHeight="21.0" prefWidth="320.0" textAlignment="CENTER" />
+            <Label alignment="CENTER" layoutX="10.0" layoutY="861.0" prefHeight="31.0" prefWidth="300.0" text="\@Author: Dariusz Wardęga" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Separator layoutX="35.0" layoutY="100.0" prefWidth="250.0" />
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="1280.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <TabPane prefHeight="898.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Loaded Image">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="imageDisplayer" fitHeight="665.0" fitWidth="830.0" layoutX="225.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="RGB Channels">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children></AnchorPane>
+  </items>
+</SplitPane>

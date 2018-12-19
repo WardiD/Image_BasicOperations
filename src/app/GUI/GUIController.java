@@ -15,7 +15,7 @@ import java.io.File;
 
 public class GUIController {
 
-    
+
     @FXML
     private Button loadImageButton;
 
