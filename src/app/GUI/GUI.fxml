@@ -22,6 +22,11 @@
                </font>
             </Label>
             <Separator layoutX="35.0" layoutY="100.0" prefWidth="250.0" />
+            <Button fx:id="redChannelButton" layoutX="82.0" layoutY="116.0" mnemonicParsing="false" onAction="#redChannelButtonAction" prefHeight="31.0" prefWidth="157.0" text="RED" />
+            <Button fx:id="greenChannelButton" layoutX="82.0" layoutY="168.0" mnemonicParsing="false" onAction="#greenChannelButtonAction" prefHeight="31.0" prefWidth="157.0" text="GREEN" />
+            <Button fx:id="blueChannelButton" layoutX="82.0" layoutY="220.0" mnemonicParsing="false" onAction="#blueChannelButtonAction" prefHeight="31.0" prefWidth="157.0" text="BLUE" />
+            <Separator layoutX="35.0" layoutY="269.0" prefWidth="250.0" />
+            <Button fx:id="saveGrayImageButton" layoutX="52.0" layoutY="284.0" mnemonicParsing="false" onAction="#SaveGrayscaleImageAction" prefHeight="31.0" prefWidth="217.0" text="Save grayscale image" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="1280.0" prefHeight="160.0" prefWidth="100.0">
          <children>
@@ -31,16 +36,37 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <ImageView fx:id="imageDisplayer" fitHeight="665.0" fitWidth="830.0" layoutX="225.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="defaultImageViewer" fitHeight="860.0" fitWidth="1273.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                   </content>
                 </Tab>
                 <Tab text="RGB Channels">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="channelImageViewer" fitHeight="856.0" fitWidth="1274.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children></AnchorPane>
                   </content>
                 </Tab>
+                  <Tab text="Grayscale">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="grayImageViewer" fitHeight="858.0" fitWidth="1280.0" layoutX="210.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Black &amp; White">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="blackAndWhiteImageViewer" fitHeight="867.0" fitWidth="1274.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
               </tabs>
             </TabPane>
          </children></AnchorPane>

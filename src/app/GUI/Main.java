@@ -14,6 +14,7 @@ public class Main extends Application {
         primaryStage.setTitle("Basic Operations on Images ");
         primaryStage.setScene(new Scene(root, 1600, 900));
         primaryStage.setResizable(false);
+
         primaryStage.show();
     }
 
