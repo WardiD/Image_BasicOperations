@@ -20,44 +20,90 @@ public class GUIController {
 
 
     @FXML
-    private Button loadImageButton = new Button();
+    private Label imageNameLabel;
 
     @FXML
-    private Label imageNameLabel = new Label();
+    private ImageView defaultImageViewer;
 
     @FXML
-    private ImageView defaultImageViewer =  new ImageView();
+    private ImageView channelImageViewer;
 
     @FXML
-    private ImageView channelImageViewer =  new ImageView();
+    private ImageView grayImageViewer;
 
     @FXML
-    private ImageView grayImageViewer =  new ImageView();
+    private ImageView blackAndWhiteImageViewer;
 
     @FXML
-    private ImageView blackAndWhiteImageViewer =  new ImageView();
+    private ImageView modyfingImageViewer;
 
     @FXML
-    private Button redChannelButton = new Button();
+    private Slider bwSlider;
 
-    @FXML
-    private Button greenChannelButton = new Button();
+    public void toDefaultImage(){
+        thisImage.setNewModyfingImage(thisImage.getDefaultImage());
+        modyfingImageViewer.setImage(thisImage.showModifyingImage());
+    }
 
-    @FXML
-    private Button blueChannelButton = new Button();
+    public void saveModifiedImageAction(){
+        FileChooser imageFileChooser = makeFileChooser();
 
-    @FXML
-    private Button saveGrayImageButton = new Button();
+        File myImageFile = imageFileChooser.showSaveDialog(null);
 
+        if (myImageFile != null) {
+            try {
+                ImageIO.write(SwingFXUtils.fromFXImage(thisImage.showModifyingImage(),
+                        null), "png", myImageFile);
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
 
-    public void SaveGrayscaleImageAction(ActionEvent event){
+    public void makeImageDarker(){
+        thisImage.setNewModyfingImage(thisImage.makeDarker());
+        modyfingImageViewer.setImage(thisImage.showModifyingImage());
+    }
+
+    public void makeImageBrighter(){
+        thisImage.setNewModyfingImage(thisImage.makeBrighter());
+        modyfingImageViewer.setImage(thisImage.showModifyingImage());
+    }
+
+    public void onbwSliderChanged(){
+        int newValueOfSlider = Math.round((float)bwSlider.getValue());
+        bwSlider.setValue(newValueOfSlider);
+        thisImage.setNewBWImage(newValueOfSlider);
+        blackAndWhiteImageViewer.setImage(thisImage.showBlackAndWhiteImage());
+    }
+
+    private FileChooser makeFileChooser(){
         FileChooser imageFileChooser = new FileChooser();
         imageFileChooser.setTitle("Choose destination of saving image");
         imageFileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("JPG","*.jpg"),
                 new FileChooser.ExtensionFilter("PNG","*.png")
         );
+        return imageFileChooser;
+    }
 
+    public void saveBWImageAction(ActionEvent event){
+        FileChooser imageFileChooser = makeFileChooser();
+
+        File myImageFile = imageFileChooser.showSaveDialog(null);
+
+        if (myImageFile != null) {
+            try {
+                ImageIO.write(SwingFXUtils.fromFXImage(thisImage.showBlackAndWhiteImage(),
+                        null), "png", myImageFile);
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
+
+    public void saveGrayscaleImageAction(ActionEvent event){
+        FileChooser imageFileChooser = makeFileChooser();
 
         File myImageFile = imageFileChooser.showSaveDialog(null);
 
@@ -71,6 +117,13 @@ public class GUIController {
         }
     }
 
+    private void checkIfImageLoaded(){
+        if(isImageLoaded){
+            channelImageViewer.setImage(null);
+
+            thisImage = null;
+        }
+    }
 
     public void LoadImageButtonAction(ActionEvent event){
 
@@ -83,27 +136,38 @@ public class GUIController {
                 new FileChooser.ExtensionFilter("BMP","*.bmp")
             );
 
-        File myImageFile = imageFileChooser.showOpenDialog(null);
+        checkIfImageLoaded();
 
+        File myImageFile = imageFileChooser.showOpenDialog(null);
         if(myImageFile != null ){
+
             isImageLoaded = true;
+
+            bwSlider.setValue(2.0);
             imageNameLabel.setContentDisplay(ContentDisplay.CENTER);
             imageNameLabel.setText(myImageFile.getName());
 
             thisImage = new MyImage(new Image(myImageFile.toURI().toString()));
+            if(thisImage.isColoredImage())
+                bwSlider.setDisable(false);
+            else
+                bwSlider.setDisable(true);
             defaultImageViewer.setImage(thisImage.showDefaultImage());
             grayImageViewer.setImage(thisImage.showGrayImage());
             blackAndWhiteImageViewer.setImage(thisImage.showBlackAndWhiteImage());
+            modyfingImageViewer.setImage(thisImage.showModifyingImage());
         } else {
-            imageNameLabel.setText("Problem z wczytaniem pliku!!!");
+            imageNameLabel.setText("Something goes wrong...");
         }
     }
+
     private void showAlert(){
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning!");
         alert.setContentText("Please, load an image!!!");
         alert.showAndWait();
     }
+
     public void redChannelButtonAction(ActionEvent event){
         if(isImageLoaded == false ){
             showAlert();

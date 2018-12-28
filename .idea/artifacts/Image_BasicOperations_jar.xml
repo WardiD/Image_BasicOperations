@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Image_BasicOperations:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Image_BasicOperations_jar</output-path>
+    <root id="archive" name="Image_BasicOperations.jar">
+      <element id="module-output" name="Image_BasicOperations" />
+      <element id="library" level="application" name="jdk1.8" />
+    </root>
+  </artifact>
+</component>
